@@ -1,0 +1,28 @@
+{
+  "name": "book_app",
+  "version": "1.0.0",
+  "description": "Number and name of feature:",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkDuenas/book_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkDuenas/book_app/issues"
+  },
+  "homepage": "https://github.com/MarkDuenas/book_app#readme"
+}
