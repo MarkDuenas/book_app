@@ -14,7 +14,7 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 
 // VIEWS
-app.get('/hello', homeHandler);
+app.get('/', homeHandler);
 app.get('/searches/new', bookSearchForm);
 app.get('*', errorHandler)
 // API CALLS

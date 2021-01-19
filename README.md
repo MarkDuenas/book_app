@@ -1,33 +1,35 @@
 Number and name of feature: 
 
+Search and View capability
+
 Estimate of time needed to complete: 
 
-Start time:
+Start time: 12:45pm Saturday January 16th
 
-Finish time: 
+Finish time: 11:00pm Monday January 18th
 
-Actual time needed to complete:
+Actual time needed to complete: 5 hours
 
 
 # Book App
 
 **Author**: Mark Duenas / Terrence Jamal Simms
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.3.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code 301 class. (i.e. What's your problem domain?) -->
+Book App is the search app for any reading buff! Easily find all the books you could possibly be looking for by searching based off of title or author, find books you'd like to read and save them to your books list (Feature in progress!).
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+In order to build this app you will need Node, dotenv, EJS, Superagent, and the coding prowess of Mark and Terrence!
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-
+Building Architecture: Javascript, Node.js, HTML, Express.js, CSS
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+01-16-2020: Added initial framework for HTML and wrote JavaScript code.
+
+01-18-2020: Finished javascript code and wrote CSS code. and finished final HTML... (End of Lab 11)
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+Terrence Simms
+Mark Duenas
