@@ -48,9 +48,11 @@ function bookSearchForm(req, res) {
   res.render('pages/searches/new');
 }
 
+
 function homeHandler(req, res) {
   res.render('pages/index');
 }
+
 
 function errorHandler(req, res) {
   res.render('pages/error')
