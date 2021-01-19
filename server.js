@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+const { render } = require('ejs');
 const express = require('express');
 const superagent = require('superagent');
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended: true}));
 // VIEWS
 app.get('/hello', homeHandler);
 app.get('/searches/new', bookSearchForm);
+app.get('*', errorHandler)
 // API CALLS
 app.post('/searches', searchBooks);
 
@@ -32,7 +34,11 @@ function searchBooks(req, res) {
 
   superagent.get(url)
     .then(data => data.body.items.map(book => new Book(book.volumeInfo)))
-    .then(results => res.render('pages/searches/show', {data: results}));
+    .then(results => res.render('pages/searches/show', {data: results}))
+    .catch(err => {
+      console.log(err)
+      errorHandler(req, res)
+    })
 }
 
 function bookSearchForm(req, res) {
@@ -41,6 +47,10 @@ function bookSearchForm(req, res) {
 
 function homeHandler(req, res) {
   res.render('pages/index');
+}
+
+function errorHandler(req, res) {
+  res.render('pages/error')
 }
 
 // Constructor
