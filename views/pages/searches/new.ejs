@@ -4,21 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book List</title>
+    <link rel="stylesheet" href="../styles/main.css">
   </head>
   <body>
-    <form action="/searches" method="POST">
-      <fieldset>
-        <legend>Search by:</legend>
-        <label for="author">
-          <span> Author </span>
-          <input type="text" name="author" />
-        </label>
-        <label for="title">
-          <span> Title </span>
-          <input type="text" name="title" />
-        </label>
-      </fieldset>
-      <button type="submit">Search</button>
-    </form>
+    
+    <main>
+      <h1>Best Books!</h1>
+      <h4>Search by Title or Author</h4>
+      <div class="heart">
+      <form action="/searches" method="post">
+        <input id="Books" type="text" name="search" placeholder="Enter a title or author" required>
+        <fieldset>
+          <label for="title">
+            <span>Title</span>
+            <input type="radio" name="search" value="title" required>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label for="author">
+            <span>Author</span>
+            <input type="radio" name="search" value="author" required>
+          </label>
+        </fieldset>
+        <button type="submit">Search the Google Books API</button>
+      </form>
+    </div>
+    </main>
   </body>
 </html>

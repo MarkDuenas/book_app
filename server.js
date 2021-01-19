@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 app.use(express.static('./public'));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // VIEWS
 app.get('/hello', homeHandler);
@@ -24,17 +24,20 @@ app.post('/searches', searchBooks);
 
 function searchBooks(req, res) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q='
-
-  if( req.body.author !== '' ){
-    url+=`inauthor:${req.body.author}`;
+  console.log(req.body)
+  if (req.body.search[1] === 'author') {
+    url += `inauthor:${req.body.search[0]}`;
   }
-  if( req.body.title !== '' ) {
-    url+=`intitle:${req.body.title}`;
+  if (req.body.search[1] === 'title') {
+    url += `intitle:${req.body.search[0]}`;
   }
 
   superagent.get(url)
+
     .then(data => data.body.items.map(book => new Book(book.volumeInfo)))
-    .then(results => res.render('pages/searches/show', {data: results}))
+
+    .then(results => res.render('pages/searches/show', { data: results }))
+
     .catch(err => {
       console.log(err)
       errorHandler(req, res)
@@ -59,10 +62,10 @@ function Book(obj) {
   const imgHolder = 'https://i.imgur.com/J5LVHEL.jpg';
 
   this.title = obj.title || 'No title available';
-  this.author = obj.authors[0] || 'No author listed';
+  this.author = obj.authors || 'No author listed';
   this.description = obj.description || 'No description available';
   this.image_url = obj.imageLinks.thumbnail || obj.imageLinks.smallThumbnail || imgHolder;
   // this.isbn = obj.industryIdentifiers[0].identifier || 'No ISBN available';
 }
 
-app.listen(PORT, ()=> console.log(`Now listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));

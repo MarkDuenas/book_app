@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book List</title>
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
     <main>
+      <div class="spade">
       <% data.forEach( val => { %>
-      <h1><%= val.title %></h1>
-      <h4 <%= val.author %></h4>
-      <img src="<%= val.image_url %>" />
+      <img class="book-images" src="<%= val.image_url %>" />
+      <h2><%= val.title %></h2>
+      <h4><%= val.author %></h4>
       <p><%= val.description %></p>
       <% }) %>
+    </div>
     </main>
   </body>
 </html>

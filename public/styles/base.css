@@ -1,0 +1,93 @@
+/* @media(max-width: 800px) { */
+  
+body {
+  display: flex;
+  justify-content: center;
+}
+main{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 800px;
+  /* margin: 20px; */
+}
+
+h1 {
+  display: flex;
+  justify-content: left;
+}
+
+h4{
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  margin: 0px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px
+}
+
+label {
+  display: flex;
+  max-width: 400px
+}
+
+.heart {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 75%;
+}
+
+button {
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+input {
+  justify-content: center;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+#Books{
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+span {
+  max-width: 400px;
+  justify-content: center;
+}
+.spade {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.book-images{
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  border: blanchedalmond 5px solid;
+}
+
+/* } */
