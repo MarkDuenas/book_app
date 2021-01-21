@@ -7,6 +7,22 @@
     <title>Book App</title>
   </head>
   <body>
-    <h1>HELLO</h1>
+    <h1>Favorite Books!</h1>
+    <div>
+    <h4>Total number of Books: <%= bookCount %></h4>
+  </div>
+
+    <div>
+    <% data.forEach(data => { %>
+    <img src= "<%= data.image_url %>"/>
+    <h4> <%= data.title %> </h4>
+    <h6> <%= data.author %> </h6>
+    <div>
+    <p> <%= data.description %> </p> 
+  </div>
+    <p> <%= data.isbn %> </p>
+   <% }) %>
+  </div>
+
   </body>
 </html>

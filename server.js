@@ -1,9 +1,9 @@
 'use strict';
 
 require('dotenv').config();
-const { render } = require('ejs');
 const express = require('express');
 const superagent = require('superagent');
+const pg = require('pg')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +12,13 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
+
+//DATABASE
+const client = new pg.Client(process.env.DATABASE_URL)
+client.connect()
+client.on('error', err => {
+  console.error(err);
+})
 
 // VIEWS
 app.get('/', homeHandler);
@@ -50,7 +57,16 @@ function bookSearchForm(req, res) {
 
 
 function homeHandler(req, res) {
-  res.render('pages/index');
+  // res.render('pages/index');
+  let SQL = 'SELECT * FROM books;';
+  return client.query(SQL)
+    .then(results => {
+      res.render('pages/index', {data: results.rows, bookCount: results.rows.length})
+    })
+    .catch( err => {
+      errorHandler(req, res)
+      console.log(err);
+    });
 }
 
 
@@ -67,7 +83,7 @@ function Book(obj) {
   this.author = obj.authors || 'No author listed';
   this.description = obj.description || 'No description available';
   this.image_url = obj.imageLinks.thumbnail || obj.imageLinks.smallThumbnail || imgHolder;
-  // this.isbn = obj.industryIdentifiers[0].identifier || 'No ISBN available';
+  this.isbn = obj.industryIdentifiers.identifier || 'No ISBN available';
 }
 
 app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
