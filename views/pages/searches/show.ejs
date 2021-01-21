@@ -14,6 +14,9 @@
       <h2><%= val.title %></h2>
       <h4><%= val.author %></h4>
       <p><%= val.description %></p>
+      <form method="POST" action="/books">
+        <input type="submit" name="book_id" value=" <%= val.id %> ">
+      </form>
       <% }) %>
     </div>
     </main>
