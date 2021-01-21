@@ -3,7 +3,8 @@
 require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
-const pg = require('pg')
+const pg = require('pg');
+const { render } = require('ejs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,7 +24,10 @@ client.on('error', err => {
 // VIEWS
 app.get('/', homeHandler);
 app.get('/searches/new', bookSearchForm);
-app.get('*', errorHandler)
+app.get('/books/:id', detailsHandler);
+app.get('*', errorHandler);
+
+
 // API CALLS
 app.post('/searches', searchBooks);
 
@@ -61,9 +65,22 @@ function homeHandler(req, res) {
   let SQL = 'SELECT * FROM books;';
   return client.query(SQL)
     .then(results => {
-      res.render('pages/index', {data: results.rows, bookCount: results.rows.length})
+      res.render('pages/index', { data: results.rows, bookCount: results.rows.length })
     })
-    .catch( err => {
+    .catch(err => {
+      errorHandler(req, res)
+      console.log(err);
+    });
+}
+
+function detailsHandler(req, res) {
+  let SQL = 'SELECT * FROM books WHERE id = $1'
+  let values = [req.params.id]
+  return client.query(SQL, values)
+    .then(results => {
+      res.render('pages/books/details', { data: results.rows[0] });
+    })
+    .catch(err => {
       errorHandler(req, res)
       console.log(err);
     });
