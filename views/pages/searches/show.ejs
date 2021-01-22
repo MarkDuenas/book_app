@@ -14,8 +14,15 @@
       <h2><%= val.title %></h2>
       <h4><%= val.author %></h4>
       <p><%= val.description %></p>
+      <p> <%= val.isbn %> </p>
+
       <form method="POST" action="/books">
-        <input type="submit" name="book_id" value=" <%= val.id %> ">
+        <input type="hidden" name="title" value="<%= val.title %>">
+        <input type="hidden" name="author" value="<%= val.author %>">
+        <input type="hidden" name="description" value="<%= val.description %>">
+        <input type="hidden" name="image_url" value="<%= val.image_url %>">
+        <input type="hidden" name="isbn" value="<%= val.isbn %>">
+        <input type="submit"  value="Submit">
       </form>
       <% }) %>
     </div>

@@ -4,7 +4,6 @@ require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const pg = require('pg');
-const { render } = require('ejs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,8 +29,24 @@ app.get('*', errorHandler);
 
 // API CALLS
 app.post('/searches', searchBooks);
+app.post('/books', bookCollectionHandler);
 
 // Fucntion Handlers
+
+function bookCollectionHandler(req, res){
+  let SQL = 'INSERT INTO books(author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
+  let values = [req.body.author, req.body.title, req.body.isbn, req.body.img_url, req.body.description];
+
+  client.query(SQL, values)
+    .then(results => {
+      console.log(results)
+      res.render('pages/books/details', {data: results.row[0]})
+    })
+    .catch(err => {
+      console.log(err);
+      errorHandler(req, res);
+    })
+}
 
 function searchBooks(req, res) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q='
@@ -100,7 +115,7 @@ function Book(obj) {
   this.author = obj.authors || 'No author listed';
   this.description = obj.description || 'No description available';
   this.image_url = obj.imageLinks.thumbnail || obj.imageLinks.smallThumbnail || imgHolder;
-  this.isbn = obj.industryIdentifiers.identifier || 'No ISBN available';
+  this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[0].identifier : 'No ISBN available';
 }
 
 app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
