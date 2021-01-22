@@ -1,4 +1,4 @@
- DROP TABLE IF EXISTS bookapp;
+DROP TABLE IF EXISTS bookapp;
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
   author VARCHAR(255),

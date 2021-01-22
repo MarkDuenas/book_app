@@ -34,15 +34,19 @@ app.post('/books', bookCollectionHandler);
 // Fucntion Handlers
 
 function bookCollectionHandler(req, res){
-  let SQL = 'INSERT INTO books(author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
+  let SQL = 'INSERT INTO books (author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
   let values = [req.body.author, req.body.title, req.body.isbn, req.body.img_url, req.body.description];
 
   client.query(SQL, values)
-    .then(results => {
-      console.log(results)
-      res.render('pages/books/details', {data: results.row[0]})
+  
+  let SQL2 = 'SELECT * FROM books WHERE title = $1';
+  let safeValue = [req.body.title];
+
+  client.query(SQL2, safeValue)
+    .then(result => {
+      res.redirect(`/books/${result.row[0].id}`)
     })
-    .catch(err => {
+    .catch( err => {
       console.log(err);
       errorHandler(req, res);
     })
