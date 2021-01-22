@@ -44,7 +44,8 @@ function bookCollectionHandler(req, res){
 
   client.query(SQL2, safeValue)
     .then(result => {
-      res.redirect(`/books/${result.row[0].id}`)
+      console.log(result)
+      res.redirect(`/books/${result.rows[0].id}`)
     })
     .catch( err => {
       console.log(err);
@@ -118,7 +119,7 @@ function Book(obj) {
   this.title = obj.title || 'No title available';
   this.author = obj.authors || 'No author listed';
   this.description = obj.description || 'No description available';
-  this.image_url = obj.imageLinks.thumbnail || obj.imageLinks.smallThumbnail || imgHolder;
+  this.image_url = obj.imageLinks? obj.imageLinks.thumbnail : imgHolder;
   this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[0].identifier : 'No ISBN available';
 }
 
