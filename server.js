@@ -35,7 +35,7 @@ app.post('/books', bookCollectionHandler);
 
 function bookCollectionHandler(req, res){
   let SQL = 'INSERT INTO books (author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
-  let values = [req.body.author, req.body.title, req.body.isbn, req.body.img_url, req.body.description];
+  let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description];
 
   client.query(SQL, values)
   
@@ -44,7 +44,8 @@ function bookCollectionHandler(req, res){
 
   client.query(SQL2, safeValue)
     .then(result => {
-      res.redirect(`/books/${result.row[0].id}`)
+      console.log(result)
+      res.redirect(`/books/${result.rows[0].id}`)
     })
     .catch( err => {
       console.log(err);
@@ -118,7 +119,7 @@ function Book(obj) {
   this.title = obj.title || 'No title available';
   this.author = obj.authors || 'No author listed';
   this.description = obj.description || 'No description available';
-  this.image_url = obj.imageLinks.thumbnail || obj.imageLinks.smallThumbnail || imgHolder;
+  this.image_url = obj.imageLinks? obj.imageLinks.thumbnail : imgHolder;
   this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[0].identifier : 'No ISBN available';
 }
 
