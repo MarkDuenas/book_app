@@ -35,7 +35,7 @@ app.post('/books', bookCollectionHandler);
 
 function bookCollectionHandler(req, res){
   let SQL = 'INSERT INTO books (author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
-  let values = [req.body.author, req.body.title, req.body.isbn, req.body.img_url, req.body.description];
+  let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description];
 
   client.query(SQL, values)
   
