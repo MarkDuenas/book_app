@@ -1,4 +1,4 @@
-body {
+* {
   background-color: black;
   color: white;
 }
@@ -9,4 +9,24 @@ h4 {
 
 div {
   background-color: lightgray;
+}
+
+.detail-body {
+  background-color: black;
+}
+
+h6 {
+  background-color: gray;
+}
+
+button {
+  background-color: black;
+}
+
+.spacer {
+  background-color: black;
+}
+
+p {
+  background-color: darkgray;
 }

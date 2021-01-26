@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/main.css" />
-    <title>Book App</title>
-  </head>
-  
-  <body>
-    <header>
-      <%- include('../layout/header') %>
-    </header>
+
+<head>
+  <%- include('../layout/head') %>
+</head>
+
+<body>
+  <header>
+    <%- include('../layout/header') %>
+  </header>
+  <div>
     <h1>Favorite Books!</h1>
-    <div>
-    <h4>Total number of Books: <%= bookCount %></h4>
+  </div>
+  <div>
+    <h4>Total number of Books: <%= bookCount %>
+    </h4>
   </div>
 
-    <div>
-    <% data.forEach(data => { %>
-    <img src= "<%= data.image_url %>"/>
-    <h4> <%= data.title %> </h4>
-    <h6> <%= data.author %> </h6>
-    <button><a href="/books/<%= data.id %>">View Details</a></button>
-   <% }) %>
+  <div class="book-display">
+    <% data.forEach(data=> { %>
+      <img src="<%= data.image_url %>" />
+      <h4>
+        <%= data.title %>
+      </h4>
+      <h6>
+        <%= data.author %>
+      </h6>
+      <button><a href="/books/<%= data.id %>">View Details</a></button>
+      <div class="spacer"></div>
+      <% }) %>
   </div>
 
-  </body>
+</body>
+
 </html>
