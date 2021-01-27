@@ -1,5 +1,5 @@
 <div id="update-form" hidden>
-  <form method="POST" action="/book/:id">
+  <form method="POST" action="/update/<%= data.id %>?_method=PUT">
     <label for="title">Title</label>
     <input name="title" type="text" value="<%= data.title %>">
     <label for="autho">Author</label>

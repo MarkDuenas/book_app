@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 //DATABASE
 const client = new pg.Client(process.env.DATABASE_URL)
@@ -24,6 +26,9 @@ client.on('error', err => {
 app.get('/', homeHandler);
 app.get('/searches/new', bookSearchForm);
 app.get('/books/:id', detailsHandler);
+
+app.put('/update/:id', updateHandler);
+
 app.get('*', errorHandler);
 
 
@@ -32,6 +37,21 @@ app.post('/searches', searchBooks);
 app.post('/books', bookCollectionHandler);
 
 // Fucntion Handlers
+
+function updateHandler(req, res) {
+  // destructure
+  let {author, title, isbn, image_url, description} = req.body;
+
+  let SQL = 'UPDATE books SET author=$1, title=$2, isbn=$3, image_url=$4, description=$5 WHERE id=$6;';
+  let values = [author, title, isbn, image_url, description, req.params.id];
+
+  client.query(SQL, values)
+    .then(res.redirect(`/books/${req.params.id}`))
+    .catch( err => {
+      console.log(err);
+      errorHandler(req, res);
+    })
+}
 
 function bookCollectionHandler(req, res){
   let SQL = 'INSERT INTO books (author, title, isbn, image_url, description) VALUES ($1, $2, $3, $4, $5);'
