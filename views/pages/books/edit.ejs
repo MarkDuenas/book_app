@@ -1,17 +1,17 @@
 <div id="update-form" hidden>
   <form method="POST" action="/update/<%= data.id %>?_method=PUT">
-    <label for="title">Title</label>
-    <input name="title" type="text" value="<%= data.title %>">
-    <label for="autho">Author</label>
-    <input name= "author" type="text" value="<%= data.author %>">
-    <label for="isbn">ISBN</label>
-    <input name="isbn" type="text" value="<%= data.isbn %>">
-    <label for="image_url">Image</label>
-    <input name= "image_url" type="text" value="<%= data.image_url %>">
-    <label for="description">Description</label>
-    <textarea name="description" cols="30" rows="10">
+    <label class="update-list" for="title">Title</label>
+    <input class="update-list" name="title" type="text" value="<%= data.title %>">
+    <label class="update-list" for="autho">Author</label>
+    <input class="update-list" name= "author" type="text" value="<%= data.author %>">
+    <label class="update-list" for="isbn">ISBN</label>
+    <input class="update-list" name="isbn" type="text" value="<%= data.isbn %>">
+    <label class="update-list" for="image_url">Image</label>
+    <input class="update-list" name= "image_url" type="text" value="<%= data.image_url %>">
+    <label class="update-list" for="description">Description</label>
+    <textarea class="update-list" name="description" cols="30" rows="10">
       <%= data.description %>
     </textarea>
-    <button class="update-button"> Update Book </button>
+    <button class="update-list" class="update-button"> Update Book </button>
   </form>
 </div>

@@ -153,8 +153,18 @@ p {
   background-color: #555;
 }
 
-/* #update-form {
-  display: flex;
-  justify-content: center;
-} */
+#update-form {
+ margin: auto;
+
+ padding-top: 40px;
+}
+
+#button-div {
+  margin: auto;
+  padding: 15px;
+}
+
+.update-list {
+  padding: 10px;
+}
 /* } */
