@@ -5,16 +5,32 @@
   </head>
 </head>
 <body class="detail-body">
+  <a class='home-button' href="/">Go Home</a>
+  <div class="details-page">
+    <img src= "<%= data.image_url %>"/>
+    <h4> <%= data.title %> </h4>
+    <h6> <%= data.author %> </h6>
   <div>
-  <img src= "<%= data.image_url %>"/>
-  <h4> <%= data.title %> </h4>
-  <h6> <%= data.author %> </h6>
-  <div>
-  <p> <%= data.description %> </p> 
-</div>
-  <p> <%= data.isbn %> </p>
-</div>
-<a href="/">Go Home</a>
+    <p> <%= data.description %> </p> 
+  </div>
+  <p> ISBN: <%= data.isbn %> </p>
+  </div>
+  <div id="button-div">
+    <button id="get-update-form-btn"> Update Details </button>
+  </div>
+  <div id="update-form">
+
+  </div>
+
+  <%- include('./edit') %>
+
+  <script>
+    document.getElementById("get-update-form-btn")
+      .addEventListener("click", function() {
+        document.getElementById("button-div").hidden = true;
+        document.getElementById("update-form").hidden = false;
+      },)
+  </script>
 </body>
 </html>
   
