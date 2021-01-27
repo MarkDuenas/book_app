@@ -1,0 +1,17 @@
+<div id="update-form" hidden>
+  <form method="POST" action="/book/:id">
+    <label for="title">Title</label>
+    <input name="title" type="text" value="<%= data.title %>">
+    <label for="autho">Author</label>
+    <input name= "author" type="text" value="<%= data.author %>">
+    <label for="isbn">ISBN</label>
+    <input name="isbn" type="text" value="<%= data.isbn %>">
+    <label for="image_url">Image</label>
+    <input name= "image_url" type="text" value="<%= data.image_url %>">
+    <label for="description">Description</label>
+    <textarea name="description" cols="30" rows="10">
+      <%= data.description %>
+    </textarea>
+    <button class="update-button"> Update Book </button>
+  </form>
+</div>
