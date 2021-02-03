@@ -38,7 +38,7 @@ function bookCollectionHandler(req, res){
   let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description];
 
   client.query(SQL, values)
-  
+
   let SQL2 = 'SELECT * FROM books WHERE title = $1';
   let safeValue = [req.body.title];
 
